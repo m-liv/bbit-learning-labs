@@ -1,5 +1,6 @@
 import pika
 import os
+import sys
 from consumer_interface import mqConsumerInterface
 
 class mqConsumer(mqConsumerInterface): 
@@ -23,7 +24,7 @@ class mqConsumer(mqConsumerInterface):
 
         # Declare queue and exchange
         self.createQueue(queueName=self.queue_name)
-        self.channel.exchange_declare(exchange=self.exchange_name)
+        self.channel.exchange_declare(exchange=self.exchange_name, exchange_type ="topic")
         #self.bindQueueToExchange(self, queueName=self.queue_name, )
         self.channel.queue_bind(
             queue= self.queue_name,
